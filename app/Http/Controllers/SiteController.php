@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSiteRequest;
 use App\Models\Site;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class SiteController extends Controller
@@ -98,5 +100,33 @@ class SiteController extends Controller
         $site->delete();
 
         return redirect()->route('sites.index');
+    }
+
+    /**
+     * Display a specific site entry as JSON (API endpoint)
+     *
+     * @param Site $site
+     * @return \Illuminate\Http\JsonResponse
+     */
+    // public function apiShow(Site $site) {
+    //     return response()->json($site);
+    // }
+
+    public function testApi(Site $site)
+    {
+        try {
+            $response = Http::withBasicAuth(
+                env('ES_WATCH_USERNAME'),
+                env('ES_WATCH_PASSWORD')
+            )->get($site->url . '/wp-json/wp-watch/v1/plugin-updates');
+        } catch (ConnectionException $e) {
+            return 'Unable to connect to the WordPress site.';
+        }
+dd($response->json());
+        if ($response->failed()) {
+            return 'WordPress API request failed.';
+        }
+
+        return $response->json();
     }
 }

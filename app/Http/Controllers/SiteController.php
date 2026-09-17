@@ -23,14 +23,25 @@ class SiteController extends Controller
     }
 
     public function store(Request $request) {
+
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'name' => 'required',
+            'url' => 'required|url',
+            'php_version' => 'required',
+            'wp_version' => 'required',
+            'status' => 'required',
+        ]);
        
         // Store new site
         $site = new Site();
-        $site->name = $request->input('name');
-        $site->url = $request->input('url');
-        $site->php_version = $request->php_version;
-        $site->wp_version = $request->wp_version;
-        $site->status = $request->status;
+        $site->name = $validated['name'];
+        $site->url = $validated['url'];
+        $site->php_version = $validated['php_version'];
+        $site->wp_version = $validated['wp_version'];
+        $site->status = $validated['status'];
+        
+        // Save the new site to the database
         $site->save();
 
         return redirect('/sites');

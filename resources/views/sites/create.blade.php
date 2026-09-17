@@ -7,6 +7,16 @@
     <div class="max-w-xl mx-auto">
     <h1 class="text-3xl font-bold text-slate-900 mb-8">Add site</h1>
 
+    @if ($errors->any())
+        <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+            <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="/sites"
           class="space-y-6 bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
         @csrf

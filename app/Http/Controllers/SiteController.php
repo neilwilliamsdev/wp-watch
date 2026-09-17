@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Site;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreSiteRequest;
 
 class SiteController extends Controller
 {
@@ -18,16 +18,10 @@ class SiteController extends Controller
         return view('sites.create');
     }
 
-    public function store(Request $request) {
+    public function store(StoreSiteRequest $request) {
 
-        // Validate the incoming request data
-        $validated = $request->validate([
-            'name' => 'required',
-            'url' => 'required|url',
-            'php_version' => 'required',
-            'wp_version' => 'required',
-            'status' => 'required',
-        ]);
+        // The incoming request data is already validated by StoreSiteRequest
+        $validated = $request->validated();
        
         // Store new site
         $site = new Site();
@@ -43,7 +37,11 @@ class SiteController extends Controller
         return redirect('/sites');
     }
 
-    public function update(Request $request, $id) {
+    public function show(Site $site) {
+        return view('sites.show', ['site' => $site]);
+    }
+
+    public function update(StoreSiteRequest $request, $id) {
         // Logic to update an existing site
     }
 

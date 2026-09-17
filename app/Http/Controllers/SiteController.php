@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\RedirectResponse;
-use App\Models\Site;
+
 use App\Http\Requests\StoreSiteRequest;
+use App\Models\Site;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class SiteController extends Controller
@@ -41,15 +42,7 @@ class SiteController extends Controller
         $validated = $request->validated();
        
         // Store new site
-        $site = new Site();
-        $site->name = $validated['name'];
-        $site->url = $validated['url'];
-        $site->php_version = $validated['php_version'];
-        $site->wp_version = $validated['wp_version'];
-        $site->status = $validated['status'];
-        
-        // Save the new site to the database
-        $site->save();
+        Site::create($validated);
 
         return redirect()->route('sites.index');
     }
@@ -83,16 +76,15 @@ class SiteController extends Controller
      */
     public function update(StoreSiteRequest $request, Site $site): RedirectResponse {
 
+        // The incoming request data is already validated by StoreSiteRequest
         $validated = $request->validated();
 
-        $site->name = $validated['name'];
-        $site->url = $validated['url'];
-        $site->php_version = $validated['php_version'];
-        $site->wp_version = $validated['wp_version'];
-        $site->status = $validated['status'];
-        $site->save();
+        // Update the site with validated data
+        $site->update($validated);
 
+        // Redirect back to the sites index page after updating
         return redirect()->route('sites.index');
+        
     }
 
     /**

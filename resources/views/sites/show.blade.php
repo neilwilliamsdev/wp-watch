@@ -12,6 +12,32 @@
         <p><strong>WordPress Version:</strong> {{ $site->wp_version }}</p>
         <p><strong>Status:</strong> {{ $site->status }}</p>
     </div>
+    <h2 class="mt-8 text-xl font-semibold">Plugin updates</h2>
+
+    @if (empty($pluginUpdates))
+        <p class="mt-2 text-slate-600">All plugins are up to date.</p>
+    @else
+        <div class="mt-4 overflow-hidden rounded-lg bg-white shadow">
+            <table class="min-w-full divide-y divide-slate-200">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Plugin</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Installed</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Available</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    @foreach ($pluginUpdates as $plugin)
+                        <tr>
+                            <td class="px-4 py-3">{{ $plugin['name'] }}</td>
+                            <td class="px-4 py-3">{{ $plugin['installed_version'] }}</td>
+                            <td class="px-4 py-3">{{ $plugin['available_version'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 
     <div class="mt-8">
     <form method="POST" action="{{ route('sites.destroy', $site) }}">

@@ -18,10 +18,6 @@ class SiteController extends Controller
         return view('sites.create');
     }
 
-    public function show($id) {
-        return view('sites.show', ['id' => $id]);
-    }
-
     public function store(Request $request) {
 
         // Validate the incoming request data

@@ -7,16 +7,6 @@
     <div class="max-w-xl mx-auto">
     <h1 class="text-3xl font-bold text-slate-900 mb-8">Add site</h1>
 
-    @if ($errors->any())
-        <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
-            <ul class="list-disc pl-5">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form method="POST" action="/sites"
           class="space-y-6 bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
         @csrf
@@ -25,6 +15,9 @@
             <label for="name" class="block text-sm font-medium text-slate-700 mb-2">
                 Name
             </label>
+            @error('name')
+                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            @enderror
 
             <input
                 id="name"
@@ -39,7 +32,9 @@
             <label for="url" class="block text-sm font-medium text-slate-700 mb-2">
                 URL
             </label>
-
+            @error('url')
+                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            @enderror
             <input
                 id="url"
                 type="url"
@@ -53,6 +48,9 @@
             <label for="php_version" class="block text-sm font-medium text-slate-700 mb-2">
                 PHP version
             </label>
+            @error('php_version')
+                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            @enderror
 
             <input
                 id="php_version"
@@ -67,6 +65,9 @@
             <label for="wp_version" class="block text-sm font-medium text-slate-700 mb-2">
                 WordPress version
             </label>
+            @error('wp_version')
+                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            @enderror
 
             <input
                 id="wp_version"
@@ -81,6 +82,9 @@
             <label for="status" class="block text-sm font-medium text-slate-700 mb-2">
                 Status
             </label>
+            @error('status')
+                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            @enderror
 
             <input
                 id="status"

@@ -12,4 +12,21 @@
         <p><strong>WordPress Version:</strong> {{ $site->wp_version }}</p>
         <p><strong>Status:</strong> {{ $site->status }}</p>
     </div>
+
+    <div class="mt-8">
+    <form method="POST" action="{{ route('sites.destroy', $site) }}">
+        @csrf
+        @method('DELETE')
+
+        <button
+            type="submit"
+            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+        >
+            Delete site
+        </button>
+    </form>
+</div>
+<div class="mt-4">
+    <a href="{{ route('sites.edit', $site) }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Edit site</a>
+</div>
 @endsection

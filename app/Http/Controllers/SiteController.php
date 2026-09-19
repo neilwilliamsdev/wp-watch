@@ -30,6 +30,11 @@ class SiteController extends Controller
 
         $sites = Site::all();
 
+        // Call WordPress service to get data for each site
+        foreach ($sites as $site) {
+            $site->wordpress = $this->wordpress->getPluginUpdates($site);
+        }
+
         return view('sites.index', ['sites' => $sites]);
     }
 

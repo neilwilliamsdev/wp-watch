@@ -19,13 +19,15 @@
         <div class="space-y-4">
             @foreach ($sites as $site)
                 <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold">{{ $site->name }}</h2>
+                    <a href="/sites/{{ $site->id }}" class="text-xl font-semibold text-blue-600 hover:underline">
+                        {{ $site->name }}
+                    </a>
 
                     <p class="text-gray-500">{{ $site->url }}</p>
 
-                    <div class="mt-4 flex gap-6 text-sm">
-                        <span>PHP {{ $site->php_version }}</span>
-                        <span>WordPress {{ $site->wp_version }}</span>
+                    <div class="mt-4 flex gap-6 text-sm core-info">
+                        <span class="flex items-center gap-2"><img class="max-w-10" src="{{ asset('images/php.svg') }}" alt="PHP"> <b>{{ $site->wordpress['php_version'] }}</b></span>
+                        <span class="flex items-center gap-2"><img class="max-w-10" src="{{ asset('images/wordpress.png') }}" alt="WordPress"> <b>{{ $site->wordpress['wordpress_version'] }}</b></span>
                         <span>{{ $site->status }}</span>
                     </div>
                 </div>

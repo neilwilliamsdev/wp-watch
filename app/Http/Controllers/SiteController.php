@@ -32,7 +32,13 @@ class SiteController extends Controller
 
         // Call WordPress service to get data for each site
         foreach ($sites as $site) {
+            
+            // Check if the site is available
+            $site->is_available = $this->wordpress->isAvailable($site);
+
+            // 
             $site->wordpress = $this->wordpress->getPluginUpdates($site);
+
         }
 
         return view('sites.index', ['sites' => $sites]);

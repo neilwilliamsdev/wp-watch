@@ -34,5 +34,16 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'wp_watch' => [
+        'emporio' => [
+            'username' => env('ES_WATCH_USERNAME'),
+            'password' => env('ES_WATCH_PASSWORD'),
+        ],
+
+        'tms' => [
+            'username' => env('TMS_WATCH_USERNAME'),
+            'password' => env('TMS_WATCH_PASSWORD'),
+        ],
+    ],
 
 ];

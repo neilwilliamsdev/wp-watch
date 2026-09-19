@@ -25,10 +25,18 @@
 
                     <p class="text-gray-500">{{ $site->url }}</p>
 
-                    <div class="mt-4 flex gap-6 text-sm core-info">
+                    <div class="mt-4 flex items-center gap-6 text-sm core-info">
                         <span class="flex items-center gap-2"><img class="max-w-10" src="{{ asset('images/php.svg') }}" alt="PHP"> <b>{{ $site->wordpress['php_version'] }}</b></span>
                         <span class="flex items-center gap-2"><img class="max-w-10" src="{{ asset('images/wordpress.png') }}" alt="WordPress"> <b>{{ $site->wordpress['wordpress_version'] }}</b></span>
-                        <span>{{ $site->status }}</span>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="inline-block h-3 w-3 rounded-full {{ $site->is_available ? 'bg-green-500' : 'bg-red-500' }}"
+                            ></span>
+
+                            <span class="text-sm">
+                                {{ $site->is_available ? 'Online' : 'Offline' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             @endforeach

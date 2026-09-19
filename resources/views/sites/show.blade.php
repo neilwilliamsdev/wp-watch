@@ -10,7 +10,16 @@
         <p><strong>URL:</strong> <a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></p>
         <p><strong>PHP Version:</strong> {{ $wordpress['php_version'] }}</p>
         <p><strong>WordPress Version:</strong> {{ $wordpress['wordpress_version'] }}</p>
-        <p><strong>Status:</strong> {{ $site->status }}</p>
+        <div class="flex items-center gap-2">
+            <p><strong>Status:</strong></p> 
+            <span
+                class="inline-block h-3 w-3 rounded-full {{ $site->is_available ? 'bg-green-500' : 'bg-red-500' }}"
+            ></span>
+
+            <span class="text-sm">
+                {{ $site->is_available ? 'Online' : 'Offline' }}
+            </span>
+        </div>
     </div>
     <h2 class="mt-8 text-xl font-semibold">Plugin updates</h2>
 

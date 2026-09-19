@@ -25,7 +25,7 @@ class StoreSiteRequest extends FormRequest
         return [
             'name' => 'required',
             'url' => 'required|url',
-            'status' => 'required|in:up,down',
+            'credential_key' => 'required',
         ];
     }
 }

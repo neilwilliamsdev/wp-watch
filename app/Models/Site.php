@@ -10,6 +10,6 @@ class Site extends Model
     protected $fillable = [
         'name',
         'url',
-        'status',
+        'credential_key',
     ];
 }

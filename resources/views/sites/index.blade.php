@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-5xl mx-auto p-6">
         <div class="flex items-center justify-between mb-8">
             <h1 class="text-3xl font-bold">Sites</h1>
 

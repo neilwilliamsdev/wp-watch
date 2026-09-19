@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
-            $table->string('php_version');
-            $table->string('wp_version');
             $table->string('status');
             $table->timestamps();
         });

@@ -45,40 +45,6 @@
         </div>
 
         <div>
-            <label for="php_version" class="block text-sm font-medium text-slate-700 mb-2">
-                PHP version
-            </label>
-            @error('php_version')
-                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-            @enderror
-
-            <input
-                id="php_version"
-                type="text"
-                name="php_version"
-                class="w-full rounded-lg border border-slate-300 px-4 py-3
-                       focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-            >
-        </div>
-
-        <div>
-            <label for="wp_version" class="block text-sm font-medium text-slate-700 mb-2">
-                WordPress version
-            </label>
-            @error('wp_version')
-                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-            @enderror
-
-            <input
-                id="wp_version"
-                type="text"
-                name="wp_version"
-                class="w-full rounded-lg border border-slate-300 px-4 py-3
-                       focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-            >
-        </div>
-
-        <div>
             <label for="status" class="block text-sm font-medium text-slate-700 mb-2">
                 Status
             </label>

@@ -65,17 +65,14 @@ class SiteController extends Controller
      * @param Site $site
      * @return View
      */
-    public function show(Site $site): View {
+    public function show(Site $site): View
+    {
+        $wordpress = $this->wordpress->getPluginUpdates($site);
 
-        // Get plugin updates for the site
-        $pluginUpdates = $this->wordpress->getPluginUpdates($site);
-
-        // Pass the plugin updates to the view
         return view('sites.show', [
             'site' => $site,
-            'pluginUpdates' => $pluginUpdates,
+            'wordpress' => $wordpress,
         ]);
-
     }
 
     /**

@@ -10,8 +10,6 @@ class Site extends Model
     protected $fillable = [
         'name',
         'url',
-        'php_version',
-        'wp_version',
         'status',
     ];
 }

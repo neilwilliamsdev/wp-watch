@@ -25,8 +25,6 @@ class StoreSiteRequest extends FormRequest
         return [
             'name' => 'required',
             'url' => 'required|url',
-            'php_version' => 'required',
-            'wp_version' => 'required',
             'status' => 'required|in:up,down',
         ];
     }

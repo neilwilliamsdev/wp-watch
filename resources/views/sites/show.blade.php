@@ -8,13 +8,13 @@
     <div class="max-w-xl mx-auto">
         <p><strong>Name:</strong> {{ $site->name }}</p>
         <p><strong>URL:</strong> <a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></p>
-        <p><strong>PHP Version:</strong> {{ $site->php_version }}</p>
-        <p><strong>WordPress Version:</strong> {{ $site->wp_version }}</p>
+        <p><strong>PHP Version:</strong> {{ $wordpress['php_version'] }}</p>
+        <p><strong>WordPress Version:</strong> {{ $wordpress['wordpress_version'] }}</p>
         <p><strong>Status:</strong> {{ $site->status }}</p>
     </div>
     <h2 class="mt-8 text-xl font-semibold">Plugin updates</h2>
 
-    @if (empty($pluginUpdates))
+    @if (empty($wordpress['plugin_updates']))
         <p class="mt-2 text-slate-600">All plugins are up to date.</p>
     @else
         <div class="mt-4 overflow-hidden rounded-lg bg-white shadow">
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200">
-                    @foreach ($pluginUpdates as $plugin)
+                    @foreach ($wordpress['plugin_updates'] as $plugin)
                         <tr>
                             <td class="px-4 py-3">{{ $plugin['name'] }}</td>
                             <td class="px-4 py-3">{{ $plugin['installed_version'] }}</td>
